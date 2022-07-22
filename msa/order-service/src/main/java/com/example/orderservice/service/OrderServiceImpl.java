@@ -13,8 +13,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
-
-    private final OrderService orderService;
     private final OrderRepository orderRepository;
 
     @Override
