@@ -25,16 +25,17 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
-        http.authorizeRequests().antMatchers("/**")
-                .hasAnyAuthority("192.168.56.1")
-                        .and()
-                        .addFilter(getAuthentionFilter());
+        http.authorizeRequests()
+                .antMatchers("/**")
+                .access("hasIpAddress('" + "192.168.137.1" + "')") //  IP_ADDRESS="x.x.x.x"
+                .and()
+                .addFilter(getAuthenticationFilter());
 
         // h2-console에 접근할 수 있게 설정한다.
         http.headers().frameOptions().disable();
     }
 
-    private AuthenticationFilter getAuthentionFilter() throws Exception{
+    private AuthenticationFilter getAuthenticationFilter() throws Exception{
         AuthenticationFilter authenticationFilter = new AuthenticationFilter();
         authenticationFilter.setAuthenticationManager(authenticationManager());
 
