@@ -2,6 +2,9 @@ server:
   port: 0
 
 spring:
+  config:
+    import:
+      - classpath:/bootstrap.yml
   application:
     name: user-service
   h2:
@@ -30,6 +33,13 @@ logging:
   level:
     com.example.userservice: DEBUG
 
-token:
-  expiration_time: 86400000
-  secret: user_token
+
+#token:
+#  secret: user_token
+#  expiration_time: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
