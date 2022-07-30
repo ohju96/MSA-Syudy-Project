@@ -13,6 +13,9 @@ eureka:
 #    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
 spring:
+  config:
+    import:
+      - classpath:/bootstrap.yml
   application:
     name: apigateway-service
   cloud:
