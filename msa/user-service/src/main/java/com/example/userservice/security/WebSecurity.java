@@ -25,6 +25,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll(); //actuator로 접근하는 것은 모두 통과
         http.authorizeRequests()
                 .antMatchers("/**")
                 .access("hasIpAddress('" + "192.168.137.1" + "')") //  IP_ADDRESS="x.x.x.x"
